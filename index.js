@@ -7,11 +7,15 @@ var exec = require('child_process').exec;
 
 function getNowPlaying(callback) {
   request("http://6music.sharpshooterlabs.com", function(error, response, body) {
-    var $ = cheerio.load(body);
-    callback({
-      artist: $('#artist').text(),
-      title: $('#title').text()
-    });
+    if(error) {
+      callback({ error: error });
+    } else {
+      var $ = cheerio.load(body);
+      callback({
+        artist: $('#artist').text(),
+        title: $('#title').text(),
+      });
+    }
   });
 }
 
@@ -29,8 +33,13 @@ function printToToiletConsole(text) {
 
 function printNowPlaying() {
   getNowPlaying(function(nowPlayingObject) {
-    clearConsole();
-    printToToiletConsole(nowPlayingObject.title + "\n by \n" + nowPlayingObject.artist);
+    if(nowPlayingObject.error) {
+      clearConsole();
+      printToToiletConsole(nowPlayingObject.error);
+    } else {
+      clearConsole();
+      printToToiletConsole(nowPlayingObject.title + "\n by \n" + nowPlayingObject.artist);
+    }
   });
 }
 
