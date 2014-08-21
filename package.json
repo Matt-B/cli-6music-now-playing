@@ -1,0 +1,10 @@
+{
+  "name": "cli-6music-now-playing",
+  "version": "0.0.1",
+  "description": "Printing what's playing on 6music to the command line.",
+  "main": "index.js",
+  "dependencies": {
+    "request": "*",
+    "cheerio": "*"
+  }
+}
