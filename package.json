@@ -2,6 +2,10 @@
   "name": "cli-6music-now-playing",
   "version": "0.0.1",
   "description": "Printing what's playing on 6music to the command line.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Matt-B/cli-6music-now-playing.git"
+  },
   "main": "index.js",
   "dependencies": {
     "request": "*",
