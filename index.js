@@ -2,10 +2,9 @@
 
 var request = require('request');
 var cheerio = require('cheerio');
-var sys = require('sys');
 var asciify = require('asciify');
 var clear = require('cli-clear');
-var exec = require('child_process').exec;
+var rainbow = require('ansi-rainbow');
 
 function getNowPlaying(callback) {
   request("http://6music.sharpshooterlabs.com", function(error, response, body) {
@@ -21,14 +20,9 @@ function getNowPlaying(callback) {
   });
 }
 
-function randomColor() {
-  var colors = ['green', 'red', 'blue', 'white'];
-  return colors[Math.floor(Math.random()*colors.length)];
-}
-
 function printAsciiText(text) {
-  asciify(text, { color: randomColor() }, function(err, res) {
-    console.log(res) 
+  asciify(text, { maxWidth: process.stdout.columns }, function(err, res) {
+    console.log(rainbow.r(res)); 
   });
 }
 
@@ -39,7 +33,9 @@ function printNowPlaying() {
       printAsciiText(nowPlayingObject.error);
     } else {
       clear();
-      printAsciiText(nowPlayingObject.title + "\n by \n" + nowPlayingObject.artist);
+      printAsciiText(nowPlayingObject.title);
+      printAsciiText(" by ");
+      printAsciiText(nowPlayingObject.artist);
     }
   });
 }

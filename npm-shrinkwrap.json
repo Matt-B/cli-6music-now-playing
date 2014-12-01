@@ -2,6 +2,18 @@
   "name": "cli-6music-now-playing",
   "version": "0.0.1",
   "dependencies": {
+    "ansi-rainbow": {
+      "version": "0.0.8",
+      "from": "ansi-rainbow@*",
+      "resolved": "https://registry.npmjs.org/ansi-rainbow/-/ansi-rainbow-0.0.8.tgz",
+      "dependencies": {
+        "ansi-styles": {
+          "version": "1.0.0",
+          "from": "ansi-styles@>=1.0.0 <1.1.0",
+          "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-1.0.0.tgz"
+        }
+      }
+    },
     "asciify": {
       "version": "1.3.5",
       "from": "asciify@*",
