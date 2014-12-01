@@ -21,8 +21,13 @@ function getNowPlaying(callback) {
   });
 }
 
+function randomColor() {
+  var colors = ['green', 'red', 'blue', 'white'];
+  return colors[Math.floor(Math.random()*colors.length)];
+}
+
 function printAsciiText(text) {
-  asciify(text, function(err, res) {
+  asciify(text, { color: randomColor() }, function(err, res) {
     console.log(res) 
   });
 }
