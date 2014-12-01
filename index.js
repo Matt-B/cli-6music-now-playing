@@ -20,9 +20,12 @@ function getNowPlaying(callback) {
   });
 }
 
-function printAsciiText(text) {
+function printAsciiText(text, callback) {
   asciify(text, { maxWidth: process.stdout.columns }, function(err, res) {
-    console.log(rainbow.r(res)); 
+    console.log(rainbow.r(res));
+    if(callback) {
+      callback();
+    }
   });
 }
 
@@ -33,9 +36,11 @@ function printNowPlaying() {
       printAsciiText(nowPlayingObject.error);
     } else {
       clear();
-      printAsciiText(nowPlayingObject.title);
-      printAsciiText(" by ");
-      printAsciiText(nowPlayingObject.artist);
+      printAsciiText(nowPlayingObject.title, function() {
+        printAsciiText(" by ", function() {
+          printAsciiText(nowPlayingObject.artist);
+        });
+      });
     }
   });
 }
