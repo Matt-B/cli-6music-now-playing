@@ -21,7 +21,7 @@ function getNowPlaying(callback) {
 }
 
 function printAsciiText(text, callback) {
-  asciify(text, { maxWidth: process.stdout.columns }, function(err, res) {
+  asciify(text, { font: "colossal", maxWidth: process.stdout.columns }, function(err, res) {
     console.log(rainbow.r(res));
     if(callback) {
       callback();
