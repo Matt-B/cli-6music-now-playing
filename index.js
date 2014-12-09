@@ -36,9 +36,11 @@ function printNowPlaying() {
       printAsciiText(nowPlayingObject.error);
     } else {
       clear();
-      printAsciiText(nowPlayingObject.title, function() {
-        printAsciiText(" by ", function() {
-          printAsciiText(nowPlayingObject.artist);
+      printAsciiText('Now Playing:', function() {
+        printAsciiText(nowPlayingObject.title, function() {
+          printAsciiText(" by ", function() {
+            printAsciiText(nowPlayingObject.artist);
+          });
         });
       });
     }
