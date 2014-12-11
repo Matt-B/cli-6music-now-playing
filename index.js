@@ -12,9 +12,8 @@ function getNowPlaying(callback) {
       callback({ error: error });
     } else {
       var $ = cheerio.load(body, {
-        //xmlMode: true
+        xmlMode: true
       });
-      console.log($('item title')[0].children[0].data.split(' – '));
       callback({
         artist: $('item title')[0].children[0].data.split(' – ')[0],
         title: $('item title')[0].children[0].data.split(' – ')[1],
