@@ -7,14 +7,17 @@ var clear = require('cli-clear');
 var rainbow = require('ansi-rainbow');
 
 function getNowPlaying(callback) {
-  request("http://6music.sharpshooterlabs.com", function(error, response, body) {
+  request("http://ws.audioscrobbler.com/1.0/user/bbc6music/recenttracks.rss", function(error, response, body) {
     if(error) {
       callback({ error: error });
     } else {
-      var $ = cheerio.load(body);
+      var $ = cheerio.load(body, {
+        //xmlMode: true
+      });
+      console.log($('item title')[0].children[0].data.split(' – '));
       callback({
-        artist: $('#artist').text(),
-        title: $('#title').text(),
+        artist: $('item title')[0].children[0].data.split(' – ')[0],
+        title: $('item title')[0].children[0].data.split(' – ')[1],
       });
     }
   });
