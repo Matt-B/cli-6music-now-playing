@@ -24,7 +24,13 @@ function getNowPlaying(callback) {
 
 function printAsciiText(text, callback) {
   asciify(text, { font: "colossal", maxWidth: process.stdout.columns }, function(err, res) {
-    console.log(rainbow.r(res));
+    var cols = process.stdout.columns;
+    var lines = res.split('\n').map(function (line) {
+      var margin = Math.floor((cols - line.length) / 2);
+      return Array(margin).join(' ') + line;
+    });
+    lines = lines.join('\n');
+    console.log(rainbow.r(lines));
     if(callback) {
       callback();
     }
