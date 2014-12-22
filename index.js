@@ -5,6 +5,7 @@ var cheerio = require('cheerio');
 var asciify = require('asciify');
 var clear = require('cli-clear');
 var rainbow = require('ansi-rainbow');
+var refreshRateInMilliSeconds = 30000;
 
 function getNowPlaying(callback) {
   request("http://ws.audioscrobbler.com/1.0/user/bbc6music/recenttracks.rss", function(error, response, body) {
@@ -56,4 +57,4 @@ function printNowPlaying() {
 }
 
 printNowPlaying();
-setInterval(printNowPlaying, 60000);
+setInterval(printNowPlaying, refreshRateInMilliSeconds);
